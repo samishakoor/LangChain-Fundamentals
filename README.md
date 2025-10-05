@@ -1,2 +1,2 @@
 # LangChain-Fundamentals
-Fundamentals of Langchain from beginner to advanced level.
+Everything about LangChain from beginner to advanced level.
