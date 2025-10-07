@@ -1,5 +1,21 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
+'''
+RecursiveCharacterTextSplitter tries to:
+
+1. Split by double newlines (paragraphs).
+
+2. If still too long → split by single newline (lines).
+
+3. If still too long → split by periods or punctuation (sentences).
+
+4. If still too long → split by spaces (words).
+
+5. If still too long → finally split by characters.
+
+That’s why it’s called recursive — it keeps going down this hierarchy until each piece fits the chunk size limit.
+'''
+
 text = """
 Space exploration has led to incredible scientific discoveries. From landing on the Moon to exploring Mars, humanity continues to push the boundaries of what’s possible beyond our planet.
 

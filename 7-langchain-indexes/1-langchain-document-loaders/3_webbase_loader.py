@@ -6,7 +6,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-model = ChatOpenAI()
+'''
+1. WebBaseLoader uses BeautifulSoup under the hood to parse the HTML and extract the text.
+2. It is useful when the website contains mostly text-based or static content like blogs, articles, etc.
+3. It does not handle JavaScript-heavy websites well (use SeleniumURLLoader for that).
+'''
+
+model = ChatOpenAI(model='gpt-4o-mini')
 
 prompt = PromptTemplate(
     template='Answer the following question \n {question} from the following text - \n {text}',
@@ -15,12 +21,12 @@ prompt = PromptTemplate(
 
 parser = StrOutputParser()
 
-url = 'https://www.flipkart.com/apple-macbook-air-m2-16-gb-256-gb-ssd-macos-sequoia-mc7x4hn-a/p/itmdc5308fa78421'
+url = 'https://www.samishakoor.me/'
+
 loader = WebBaseLoader(url)
 
 docs = loader.load()
 
-
 chain = prompt | model | parser
 
-print(chain.invoke({'question':'What is the prodcut that we are talking about?', 'text':docs[0].page_content}))
+print(chain.invoke({'question':'What is this content about?', 'text':docs[0].page_content}))

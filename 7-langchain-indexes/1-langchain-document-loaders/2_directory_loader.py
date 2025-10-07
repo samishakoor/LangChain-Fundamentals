@@ -6,7 +6,7 @@ loader = DirectoryLoader(
     loader_cls=PyPDFLoader
 )
 
-docs = loader.lazy_load()
+docs = loader.lazy_load()  # lazy_load fetches one file at a time and returns a generator of Document objects
 
 for document in docs:
     print(document.metadata)

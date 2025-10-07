@@ -4,9 +4,21 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+'''
+SemanticChunker cuts text whenever the topic or meaning noticeably changes.
+
+Here is how it works:
+1. The input text is first split into sentences or small semantic units.
+2. Each sentence is converted into a vector embedding using the embedding model you provide.
+3. The algorithm then computes the cosine similarity (or semantic distance) between each consecutive pair of sentence embeddings.
+4. The semantic chunker finds breakpoints where the semantic similarity drops significantly — i.e., where one topic ends and another begins.
+5. The chunker then groups sentences between breakpoints into meaningful sections, where each section focuses on one clear idea or topic.
+'''
+
 text_splitter = SemanticChunker(
     OpenAIEmbeddings(), breakpoint_threshold_type="standard_deviation",
-    breakpoint_threshold_amount=3
+    breakpoint_threshold_amount=1
 )
 
 sample = """
